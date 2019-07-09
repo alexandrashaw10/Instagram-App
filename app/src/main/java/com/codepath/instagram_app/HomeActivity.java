@@ -1,5 +1,6 @@
 package com.codepath.instagram_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -71,6 +72,8 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.action_logout:
                 ParseUser.logOut();
                 currentUser = ParseUser.getCurrentUser(); // this will now be null
+                Intent logout = new Intent(this, LoginActivity.class);
+                startActivity(logout);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
