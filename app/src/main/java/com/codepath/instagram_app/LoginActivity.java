@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.usernameInput) EditText usernameInput;
     @BindView(R.id.passwordInput) EditText passwordInput;
     @BindView(R.id.loginBtn) Button loginBtn;
+    @BindView(R.id.signUpBtn) Button signUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,14 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.signUpBtn)
+    public void startSignUp() {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.loginBtn)
-    public void submit() {
+    public void submitLogin() {
         final String username = usernameInput.getText().toString();
         final String password = passwordInput.getText().toString();
 
