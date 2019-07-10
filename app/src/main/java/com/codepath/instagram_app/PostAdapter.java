@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.codepath.instagram_app.model.Post;
 
 import java.util.List;
@@ -38,7 +39,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.username.setText(post.getUser().getUsername());
         holder.description.setText(post.getDescription());
 
-        Glide.with(context).load(post.getImage()).into(holder.postPicture);
+        Glide.with(context).load(post.getImage().getUrl())
+                .apply(RequestOptions.centerCropTransform())
+                .into(holder.postPicture);
     }
 
     @Override

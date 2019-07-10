@@ -6,6 +6,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
     private static final String KEY_DESCRIPTION = "description";
@@ -41,8 +43,9 @@ public class Post extends ParseObject {
             super(Post.class);
         }
 
-        public Query getTop() {
-            setLimit(20);
+        public Query getNewest(Date date) {
+            orderByDescending("createdAt");
+            whereLessThan("createdAt", date);
             return this;
         }
 
@@ -50,6 +53,17 @@ public class Post extends ParseObject {
             include("user");
             return this;
         }
+
+        public Query getTop() {
+            setLimit(20);
+            return this;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" + "user: " + getUser().toString() + ". description: " + getDescription() +
+                "}";
     }
 }
 

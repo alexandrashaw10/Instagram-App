@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.rvPosts) RecyclerView rvPosts;
     ArrayList<Post> posts;
+    PostAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,26 +65,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        final Post.Query postsQuery = new Post.Query();
-        postsQuery.getTop().withUser();
-
         posts = new ArrayList<>();
-        PostAdapter adapter = new PostAdapter(posts);
-
-        postsQuery.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> objects, ParseException e) {
-                if (e == null) {
-                    Collections.reverse(objects);
-                    posts.addAll(objects);
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
+        adapter = new PostAdapter(posts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     @Override
@@ -110,5 +96,27 @@ public class HomeActivity extends AppCompatActivity {
 
     public ParseUser getCurrentUser() {
         return currentUser;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        final Post.Query postsQuery = new Post.Query();
+        postsQuery.getNewest(new Date()).withUser().getTop();
+
+        postsQuery.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, ParseException e) {
+                if (e == null) {
+                    posts.addAll(0, objects);
+                    adapter.notifyItemInserted(0);
+                    rvPosts.scrollToPosition(0);
+                    Log.i("HomeActivity", String.format("item at position 0: %s", objects.get(0)));
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package com.codepath.instagram_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
     public String photoFileName = "photo.jpg";
     File photoFile;
+    Context context;
 
     @BindView(R.id.postBtn) Button postBtn;
     @BindView(R.id.takePictureBtn) Button takePictureBtn;
@@ -53,6 +55,8 @@ public class CreatePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_post);
 
         ButterKnife.bind(this);
+        postBtn.setEnabled(true);
+        context = this;
     }
 
     // get the image from the camera using Intents
@@ -132,10 +136,12 @@ public class CreatePostActivity extends AppCompatActivity {
     }
 
     private void savePost(final String body, ParseUser user, File photoFile) {
-        Post post = new Post();
+        final Post post = new Post();
         post.setDescription(body);
         post.setUser(user);
         post.setImage(new ParseFile(photoFile));
+
+        postBtn.setEnabled(false);
 
         post.saveInBackground(new SaveCallback() {
             @Override
@@ -143,11 +149,13 @@ public class CreatePostActivity extends AppCompatActivity {
                 if (e != null) {
                     Log.d("CreatePostActivity", "problem saving post");
                     e.printStackTrace();
+                    postBtn.setEnabled(true);
                 } else {
                     Log.d("CreatePostActivity", "success");
                     description.setText("");
                     preview.setImageResource(0);
-                    finish();
+                    Intent goBackHome = new Intent(context, HomeActivity.class);
+                    startActivity(goBackHome);
                 }
             }
         });
