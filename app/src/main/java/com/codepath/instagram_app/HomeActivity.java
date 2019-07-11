@@ -1,6 +1,5 @@
 package com.codepath.instagram_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.codepath.instagram_app.fragments.ComposeFragment;
+import com.codepath.instagram_app.fragments.ProfileFragment;
 import com.codepath.instagram_app.fragments.TimelineFragment;
 import com.parse.ParseUser;
 
@@ -22,10 +22,9 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity {
 
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView bottomNavigationView;
     private ParseUser currentUser;
-    Context context = this;
-
-    @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,30 +35,25 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Finstagram");
-        // getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ButterKnife.bind(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = new ComposeFragment();
+                Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        // TODO: put recycler view in fragment 1
                         fragment = new TimelineFragment();
                         break;
                     case R.id.action_create_post:
-                        // TODO: put create post data into fragment 2
                         fragment = new ComposeFragment();
                         break;
-                        // TODO add 3rd case that is for profile and fragment 3
-                    // TODO this will remove error going between creating posts and fragment
                     case R.id.action_user_profile:
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                     default:
-                        fragment = new ComposeFragment();
+                        fragment = new TimelineFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
@@ -89,7 +83,6 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 

@@ -17,10 +17,14 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
-    @BindView(R.id.usernameInput) EditText usernameInput;
-    @BindView(R.id.passwordInput) EditText passwordInput;
-    @BindView(R.id.loginBtn) Button loginBtn;
-    @BindView(R.id.signUpBtn) Button signUpBtn;
+    @BindView(R.id.usernameInput)
+    EditText usernameInput;
+    @BindView(R.id.passwordInput)
+    EditText passwordInput;
+    @BindView(R.id.loginBtn)
+    Button loginBtn;
+    @BindView(R.id.signUpBtn)
+    Button signUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

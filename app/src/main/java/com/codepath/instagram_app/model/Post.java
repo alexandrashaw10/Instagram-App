@@ -16,7 +16,7 @@ public class Post extends ParseObject {
         return getString(KEY_DESCRIPTION);
     }
 
-    public void setDescription (String description) {
+    public void setDescription(String description) {
         put(KEY_DESCRIPTION, description);
     }
 
@@ -34,6 +34,12 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" + "user: " + getUser().toString() + ". description: " + getDescription() +
+                "}";
     }
 
     public static class Query extends ParseQuery<Post> {
@@ -55,12 +61,11 @@ public class Post extends ParseObject {
             setLimit(20);
             return this;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "Post{" + "user: " + getUser().toString() + ". description: " + getDescription() +
-                "}";
+        public Query forCurrentUser() {
+            whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+            return this;
+        }
     }
 }
 

@@ -5,6 +5,15 @@
     <item
         android:id="@+id/action_logout"
         android:title="Logout"
+        android:orderInCategory="200"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/miActionProgress"
+        android:title="Loading..."
+        android:visible="false"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        app:actionLayout="@layout/action_view_progress" />
 
 </menu>

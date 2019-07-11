@@ -20,10 +20,14 @@ import butterknife.OnClick;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    @BindView(R.id.signUpBtn) Button signUpBtn;
-    @BindView(R.id.emailInput) EditText emailInput;
-    @BindView(R.id.passwordInput) EditText passwordInput;
-    @BindView(R.id.usernameInput) EditText usernameInput;
+    @BindView(R.id.signUpBtn)
+    Button signUpBtn;
+    @BindView(R.id.emailInput)
+    EditText emailInput;
+    @BindView(R.id.passwordInput)
+    EditText passwordInput;
+    @BindView(R.id.usernameInput)
+    EditText usernameInput;
 
     Context context;
 

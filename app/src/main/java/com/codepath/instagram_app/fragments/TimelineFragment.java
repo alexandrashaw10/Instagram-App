@@ -22,10 +22,10 @@ import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
-    RecyclerView rvPosts;
-    SwipeRefreshLayout swipeContainer;
-    ArrayList<Post> posts;
-    PostAdapter adapter;
+    protected SwipeRefreshLayout swipeContainer;
+    protected ArrayList<Post> posts;
+    protected PostAdapter adapter;
+    private RecyclerView rvPosts;
 
     @Nullable
     @Override
@@ -45,8 +45,6 @@ public class TimelineFragment extends Fragment {
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        getPosts();
-
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -55,6 +53,7 @@ public class TimelineFragment extends Fragment {
                 getPosts();
             }
         });
+
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -63,7 +62,7 @@ public class TimelineFragment extends Fragment {
     }
 
     // get the posts after a refresh
-    public void getPosts() {
+    protected void getPosts() {
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser().getNewest();
 

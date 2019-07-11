@@ -21,13 +21,20 @@ import butterknife.ButterKnife;
 
 public class DetailViewActivity extends AppCompatActivity {
 
-    @BindView(R.id.picture) ImageView picture;
-    @BindView(R.id.userName) TextView username;
-    @BindView(R.id.description) TextView description;
-    @BindView(R.id.likeBtn) ImageButton likeBtn;
-    @BindView(R.id.commentBtn) ImageButton commentBtn;
-    @BindView(R.id.replyBtn) ImageButton replyBtn;
-    @BindView(R.id.timeStamp) TextView timeStamp;
+    @BindView(R.id.picture)
+    ImageView picture;
+    @BindView(R.id.userName)
+    TextView username;
+    @BindView(R.id.description)
+    TextView description;
+    @BindView(R.id.likeBtn)
+    ImageButton likeBtn;
+    @BindView(R.id.commentBtn)
+    ImageButton commentBtn;
+    @BindView(R.id.replyBtn)
+    ImageButton replyBtn;
+    @BindView(R.id.timeStamp)
+    TextView timeStamp;
 
     String postId;
 

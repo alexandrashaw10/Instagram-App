@@ -1,5 +1,6 @@
 package com.codepath.instagram_app.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,11 +41,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class ComposeFragment extends Fragment {
 
-    public final String APP_TAG = "PersonalInstagram";
-
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int PHOTO_WIDTH = 640;
-
+    public final String APP_TAG = "PersonalInstagram";
     public String photoFileName = "photo.jpg";
     File photoFile;
 
@@ -68,15 +67,13 @@ public class ComposeFragment extends Fragment {
         preview = (ImageView) view.findViewById(R.id.preview);
         description = (EditText) view.findViewById(R.id.description);
 
-
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "clicked post butn", Toast.LENGTH_LONG).show();
                 final String postDescription = description.getText().toString();
                 ParseUser user = ParseUser.getCurrentUser();
                 if (photoFile == null || preview.getDrawable() == null) {
-                    Toast.makeText(getContext(), "No photo to submit!", Toast.LENGTH_LONG);
+                    Toast.makeText(getContext(), "No photo to submit!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 savePost(postDescription, user, photoFile);
@@ -86,8 +83,6 @@ public class ComposeFragment extends Fragment {
         takePictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("ComposeFragment", "button clicked");
-                Toast.makeText(getContext(), "clicked picture butn", Toast.LENGTH_LONG).show();
                 onLaunchCamera();
             }
         });
@@ -98,7 +93,6 @@ public class ComposeFragment extends Fragment {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         photoFile = getPhotoFileUri(photoFileName);
 
-        // wrap File object into a content provider
         Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
@@ -107,16 +101,12 @@ public class ComposeFragment extends Fragment {
         }
     }
 
-    // Returns the File for a photo stored on disk given the fileName
     public File getPhotoFileUri(String fileName) {
         File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
-
         // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
             Log.d(APP_TAG, "failed to create directory");
         }
-
-        // Return the file target for the photo based on filename
         File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
         return file;
     }
@@ -128,7 +118,6 @@ public class ComposeFragment extends Fragment {
                 Bitmap takenImage = rotateBitmapOrientation(photoFile.getAbsolutePath());
                 Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(takenImage, PHOTO_WIDTH);
 
-                // Load the taken image into a preview
                 preview.setImageBitmap(takenImage);
 
                 // compress the image further and write to a new file
@@ -160,19 +149,28 @@ public class ComposeFragment extends Fragment {
 
         postBtn.setEnabled(false);
 
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setTitle("Posting...");
+        pd.setMessage("Please wait.");
+        pd.setCancelable(false);
+        pd.show();
+
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
                     Log.d("CreatePostActivity", "problem saving post");
+                    Toast.makeText(getContext(), "Problem saving post", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                     postBtn.setEnabled(true);
+                    pd.dismiss();
                 } else {
                     Log.d("CreatePostActivity", "success");
                     description.setText("");
                     preview.setImageResource(0);
                     Intent goBackHome = new Intent(getContext(), HomeActivity.class);
                     startActivity(goBackHome);
+                    pd.dismiss();
                 }
             }
         });
@@ -185,6 +183,7 @@ public class ComposeFragment extends Fragment {
         BitmapFactory.decodeFile(photoFilePath, bounds);
         BitmapFactory.Options opts = new BitmapFactory.Options();
         Bitmap bm = BitmapFactory.decodeFile(photoFilePath, opts);
+
         // Read EXIF Data
         ExifInterface exif = null;
         try {
