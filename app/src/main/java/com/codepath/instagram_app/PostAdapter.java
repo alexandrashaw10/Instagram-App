@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,9 +54,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ImageView postPicture;
         public TextView description;
         public TextView username;
-        public Button likeBtn;
-        public Button commentBtn;
-        public Button replyBtn;
+        public ImageButton likeBtn;
+        public ImageButton commentBtn;
+        public ImageButton replyBtn;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -65,9 +65,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             description = (TextView) itemView.findViewById(R.id.description);
             username = (TextView) itemView.findViewById(R.id.userName);
 
-            likeBtn = (Button) itemView.findViewById(R.id.likeBtn);
-            commentBtn = (Button) itemView.findViewById(R.id.commentBtn);
-            replyBtn = (Button) itemView.findViewById(R.id.replyBtn);
+            likeBtn = (ImageButton) itemView.findViewById(R.id.likeBtn);
+            commentBtn = (ImageButton) itemView.findViewById(R.id.commentBtn);
+            replyBtn = (ImageButton) itemView.findViewById(R.id.replyBtn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

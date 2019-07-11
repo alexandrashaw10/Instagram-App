@@ -43,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Finstagram");
+        // getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ButterKnife.bind(this);
 
@@ -83,9 +85,10 @@ public class HomeActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        getPosts();
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

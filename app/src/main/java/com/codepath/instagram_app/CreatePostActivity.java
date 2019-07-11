@@ -38,7 +38,7 @@ public class CreatePostActivity extends AppCompatActivity {
     public final String APP_TAG = "PersonalInstagram";
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
-    public final static int PHOTO_WIDTH = 300;
+    public final static int PHOTO_WIDTH = 640;
 
     public String photoFileName = "photo.jpg";
     File photoFile;

@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="@+id/likeBtn"
         app:layout_constraintTop_toBottomOf="@+id/likeBtn" />
 
-    <Button
+    <ImageButton
         android:id="@+id/likeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,19 +60,25 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_like"
         android:text="Like"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toStartOf="@+id/commentBtn"
         app:layout_constraintStart_toStartOf="@+id/picture"
         app:layout_constraintTop_toBottomOf="@+id/picture" />
 
-    <Button
+    <ImageButton
         android:id="@+id/commentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_comment"
         android:text="Comment"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toStartOf="@+id/replyBtn"
@@ -81,16 +87,20 @@
         app:layout_constraintTop_toTopOf="@+id/likeBtn"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <ImageButton
         android:id="@+id/replyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="131dp"
-        android:layout_marginRight="131dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="280dp"
+        android:layout_marginRight="280dp"
         android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_reply_bigger"
         android:text="Reply"
         app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/picture"
         app:layout_constraintStart_toEndOf="@+id/commentBtn"
         app:layout_constraintTop_toTopOf="@+id/likeBtn"
         app:layout_constraintVertical_bias="0.0" />

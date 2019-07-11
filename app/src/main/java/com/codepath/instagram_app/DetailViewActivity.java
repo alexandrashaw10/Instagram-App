@@ -3,7 +3,7 @@ package com.codepath.instagram_app;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,9 +24,9 @@ public class DetailViewActivity extends AppCompatActivity {
     @BindView(R.id.picture) ImageView picture;
     @BindView(R.id.userName) TextView username;
     @BindView(R.id.description) TextView description;
-    @BindView(R.id.likeBtn) Button likeBtn;
-    @BindView(R.id.commentBtn) Button commentBtn;
-    @BindView(R.id.replyBtn) Button replyBtn;
+    @BindView(R.id.likeBtn) ImageButton likeBtn;
+    @BindView(R.id.commentBtn) ImageButton commentBtn;
+    @BindView(R.id.replyBtn) ImageButton replyBtn;
     @BindView(R.id.timeStamp) TextView timeStamp;
 
     String postId;
