@@ -29,11 +29,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private ParseUser currentUser;
     Context context = this;
-    private SwipeRefreshLayout swipeContainer;
-
-    BottomNavigationView bottomNavigationView;
 
     @BindView(R.id.rvPosts) RecyclerView rvPosts;
+    @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
     ArrayList<Post> posts;
     PostAdapter adapter;
 
@@ -46,8 +45,6 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
-
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,10 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-
-        // TODO fix bug that refresh adds the top post again instead of refreshing the current posts
-        // TODO Question: refreshing posts doesn't actually do anything cause you're the only one with the app
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -91,6 +84,8 @@ public class HomeActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,6 +134,8 @@ public class HomeActivity extends AppCompatActivity {
                         adapter.notifyItemInserted(i);
                     }
                     swipeContainer.setRefreshing(false);
+                } else {
+                    e.printStackTrace();
                 }
             }
         });
