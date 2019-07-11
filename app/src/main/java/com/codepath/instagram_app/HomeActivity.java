@@ -5,22 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.codepath.instagram_app.model.Post;
-import com.parse.FindCallback;
-import com.parse.ParseException;
+import com.codepath.instagram_app.fragments.ComposeFragment;
 import com.parse.ParseUser;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,16 +24,13 @@ public class HomeActivity extends AppCompatActivity {
     private ParseUser currentUser;
     Context context = this;
 
-    @BindView(R.id.rvPosts) RecyclerView rvPosts;
     @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
-    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
-    ArrayList<Post> posts;
-    PostAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,43 +42,33 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = new ComposeFragment();
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         // TODO: put recycler view in fragment 1
-                        return true;
+                        fragment = new ComposeFragment();
+                        break;
                     case R.id.action_create_post:
                         // TODO: put create post data into fragment 2
-                        Intent createPostIntent = new Intent(context, CreatePostActivity.class);
-                        startActivity(createPostIntent);
-                        return true;
+                        fragment = new ComposeFragment();
+                        // Intent createPostIntent = new Intent(context, CreatePostActivity.class);
+                        // startActivity(createPostIntent);
+                        break;
                         // TODO add 3rd case that is for profile and fragment 3
                     // TODO this will remove error going between creating posts and fragment
-                    default: return true;
+                    case R.id.action_user_profile:
+                        fragment = new ComposeFragment();
+                        break;
+                    default:
+                        fragment = new ComposeFragment();
+                        break;
                 }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                return true;
             }
         });
 
-        posts = new ArrayList<>();
-        adapter = new PostAdapter(posts);
-        rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(this));
-
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                posts.clear();
-                adapter.notifyDataSetChanged();
-                getPosts();
-            }
-        });
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-        getPosts();
-
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
     @Override
@@ -117,30 +98,4 @@ public class HomeActivity extends AppCompatActivity {
         return currentUser;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getPosts();
-    }
-
-    // get the posts after a refresh
-    public void getPosts() {
-        final Post.Query postQuery = new Post.Query();
-        postQuery.getTop().withUser().getNewest();
-
-        postQuery.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> objects, ParseException e) {
-                if (e == null) {
-                    for (int i = 0; i < objects.size(); i++) {
-                        posts.add(i, objects.get(i));
-                        adapter.notifyItemInserted(i);
-                    }
-                    swipeContainer.setRefreshing(false);
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 }
