@@ -6,8 +6,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.Date;
-
 @ParseClassName("Post")
 public class Post extends ParseObject {
     private static final String KEY_DESCRIPTION = "description";
@@ -43,9 +41,8 @@ public class Post extends ParseObject {
             super(Post.class);
         }
 
-        public Query getNewest(Date date) {
+        public Query getNewest() {
             orderByDescending("createdAt");
-            whereLessThan("createdAt", date);
             return this;
         }
 
