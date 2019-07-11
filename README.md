@@ -43,7 +43,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-[](https://github.com/alexandrashaw10/Instagram-App/blob/master/instagramGif1.gif)
+![](https://github.com/alexandrashaw10/Instagram-App/blob/master/instagramGif1.gif)
 
 ## Credits
 
