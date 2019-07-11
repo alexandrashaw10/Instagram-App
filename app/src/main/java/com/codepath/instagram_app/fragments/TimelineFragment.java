@@ -20,32 +20,32 @@ import com.parse.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class TimelineFragment extends Fragment {
 
-    @BindView(R.id.rvPosts) RecyclerView rvPosts;
-    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
+    RecyclerView rvPosts;
+    SwipeRefreshLayout swipeContainer;
     ArrayList<Post> posts;
     PostAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_timeline, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ButterKnife.bind(view);
+        rvPosts = (RecyclerView) view.findViewById(R.id.rvPosts);
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
 
         posts = new ArrayList<>();
         adapter = new PostAdapter(posts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        getPosts();
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -60,8 +60,6 @@ public class TimelineFragment extends Fragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
-        getPosts();
     }
 
     // get the posts after a refresh

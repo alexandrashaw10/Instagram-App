@@ -20,10 +20,6 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".CreatePostActivity"
-            android:label="@string/title_activity_create_post"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

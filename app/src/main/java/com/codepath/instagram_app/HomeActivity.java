@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.codepath.instagram_app.fragments.ComposeFragment;
+import com.codepath.instagram_app.fragments.TimelineFragment;
 import com.parse.ParseUser;
 
 import butterknife.BindView;
@@ -46,13 +47,11 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         // TODO: put recycler view in fragment 1
-                        fragment = new ComposeFragment();
+                        fragment = new TimelineFragment();
                         break;
                     case R.id.action_create_post:
                         // TODO: put create post data into fragment 2
                         fragment = new ComposeFragment();
-                        // Intent createPostIntent = new Intent(context, CreatePostActivity.class);
-                        // startActivity(createPostIntent);
                         break;
                         // TODO add 3rd case that is for profile and fragment 3
                     // TODO this will remove error going between creating posts and fragment
