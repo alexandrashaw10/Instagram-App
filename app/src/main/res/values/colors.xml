@@ -4,15 +4,15 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-        <color name="action_bar_semi_transparent_white">#bfffffff</color>
-        <color name="action_bar_transparent_background">#20000000</color>
+        <color name="action_bar_semi_transparent_white">#BFFFFFFF</color>
+        <color name="action_bar_transparent_background">#00000000</color>
         <color name="action_bar_transparent_background_pressed_state">#30000000</color>
-        <color name="ads_manager_subtitle_color">#8a000000</color>
+        <color name="ads_manager_subtitle_color">#8A000000</color>
         <color name="ads_manager_title_color">#de000000</color>
         <color name="avatar_stroke">@color/black_20_transparent</color>
         <color name="bioTextEntityFontColor">@color/blue_8</color>
         <color name="black">#ff000000</color>
-        <color name="black_10_transparent">#1a000000</color>
+        <color name="black_10_transparent">#1A000000</color>
         <color name="black_15_transparent">#26000000</color>
         <color name="black_20_transparent">#33000000</color>
         <color name="black_25_transparent">#40000000</color>
@@ -178,7 +178,7 @@
         <color name="nux_dayone_email_pressed">#30ffffff</color>
         <color name="nux_dayone_facebook_enabled">#803b5998</color>
         <color name="nux_dayone_facebook_pressed">#b03b5998</color>
-        <color name="nux_dayone_log_in_enabled">#10ffffff</color>
+        <color name="nux_dayone_log_in_enabled">#10FFFFFF</color>
         <color name="nux_dayone_log_in_pressed">#18ffffff</color>
         <color name="orange_0">#fffff9f5</color>
         <color name="orange_1">#ffffeee0</color>

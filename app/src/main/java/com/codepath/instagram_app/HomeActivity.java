@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Finstagram");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ButterKnife.bind(this);
 

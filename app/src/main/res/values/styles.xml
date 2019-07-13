@@ -13,6 +13,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="GradientPatternStyle">
+        <item name="gradientColor1">@color/yellow_5</item>
+        <item name="gradientColor2">@color/orange_5</item>
+        <item name="gradientColor3">@color/red_5</item>
+        <item name="gradientColor4">@color/pink_5</item>
+        <item name="gradientColor5">@color/purple_5</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

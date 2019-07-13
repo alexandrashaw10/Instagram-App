@@ -7,11 +7,41 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/instaScriptLogo"
+        android:layout_width="410dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="4dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/flContainer"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/instagram_script" />
+
+    <ImageView
+        android:id="@+id/instaCamera"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/flContainer"
+        app:layout_constraintEnd_toStartOf="@+id/instagram_script_logo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/instagram_camera" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/action_bar_semi_transparent_white"
+        android:background="@color/action_bar_transparent_background"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintBottom_toTopOf="@+id/flContainer"
         app:layout_constraintEnd_toEndOf="parent"

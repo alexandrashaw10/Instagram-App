@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="gradientColor1" format="color" />
+    <attr name="gradientColor2" format="color" />
+    <attr name="gradientColor3" format="color" />
+    <attr name="gradientColor4" format="color" />
+    <attr name="gradientColor5" format="color" />
+    <attr name="gradientPatternStyle" format="reference" />
+</resources>
