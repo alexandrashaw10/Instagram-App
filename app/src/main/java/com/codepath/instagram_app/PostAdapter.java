@@ -73,13 +73,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
-            postPicture = (ImageView) itemView.findViewById(R.id.picture);
-            description = (TextView) itemView.findViewById(R.id.description);
-            username = (TextView) itemView.findViewById(R.id.userName);
+            postPicture = itemView.findViewById(R.id.picture);
+            description = itemView.findViewById(R.id.description);
+            username = itemView.findViewById(R.id.userName);
 
-            likeBtn = (ImageButton) itemView.findViewById(R.id.likeBtn);
-            commentBtn = (ImageButton) itemView.findViewById(R.id.commentBtn);
-            replyBtn = (ImageButton) itemView.findViewById(R.id.replyBtn);
+            likeBtn = itemView.findViewById(R.id.likeBtn);
+            commentBtn = itemView.findViewById(R.id.commentBtn);
+            replyBtn = itemView.findViewById(R.id.replyBtn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

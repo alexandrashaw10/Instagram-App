@@ -62,10 +62,10 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        postBtn = (Button) view.findViewById(R.id.postBtn);
-        takePictureBtn = (Button) view.findViewById(R.id.takePictureBtn);
-        preview = (ImageView) view.findViewById(R.id.preview);
-        description = (EditText) view.findViewById(R.id.description);
+        postBtn = view.findViewById(R.id.postBtn);
+        takePictureBtn = view.findViewById(R.id.takePictureBtn);
+        preview = view.findViewById(R.id.preview);
+        description = view.findViewById(R.id.description);
 
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
