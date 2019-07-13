@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 
 The following **stretch** features are implemented:
 
-- [ ] Style the login page to look like the real Instagram login page.
+- [X] Style the login page to look like the real Instagram login page.
 - [X] Style the feed to look like the real Instagram feed.
 - [X] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using a Bottom Navigation View.
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
@@ -37,13 +37,13 @@ The following **stretch** features are implemented:
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. I'd like to discuss further the extent of what fragments can do.
-2. I'd like to talk more about adding commenting features.
+2. I'd like to talk more about adding the liking and commenting features.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![](https://github.com/alexandrashaw10/Instagram-App/blob/master/instagramGif1.gif)
+![](https://github.com/alexandrashaw10/Instagram-App/blob/master/compressedInstaGif2.gif)
 
 ## Credits
 
